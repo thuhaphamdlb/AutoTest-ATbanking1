@@ -12,11 +12,6 @@ import java.util.List;
 import static org.testng.AssertJUnit.assertEquals;
 
 public class DeleteCustomerPage {
-    @FindBy(xpath = "//div[1]/div[2]/button")
-    WebElement bankManagerLoginButton;
-
-    @FindBy(xpath = "//div[2]/div/div[1]/button[1]")
-    WebElement addCustomerButton;
 
     @FindBy(xpath = "//div[1]/input")
     WebElement firstName;
@@ -35,15 +30,6 @@ public class DeleteCustomerPage {
 
     @FindBy(xpath = "/html/body/div[3]/div/div[2]/div/div[2]/div/div/table/tbody")
     WebElement customerTable;
-
-    int beforeTableLength, afterTableLength;
-
-    public void redirectToAddCustomerPageDelete() throws InterruptedException {
-        Thread.sleep(2000);
-        bankManagerLoginButton.click();
-        Thread.sleep(3000);
-        addCustomerButton.click();
-    }
 
     public void setUserInformationDelete(String firstNameInput, String lastNameInput, String postCodeInput) throws InterruptedException {
         this.firstName.clear();
@@ -85,7 +71,6 @@ public class DeleteCustomerPage {
 
     public void deleteCustomer(String firstName, String lastName, String postCode) {
         List<WebElement> rows = customerTable.findElements(By.tagName("tr"));
-        beforeTableLength = rows.size();
         for (int i = 1; i < rows.size(); i++) {
             List<WebElement> cols = rows.get(i).findElements(By.tagName("td"));
             if (cols.get(0).getText().equals(firstName) && cols.get(1).getText().equals(lastName)

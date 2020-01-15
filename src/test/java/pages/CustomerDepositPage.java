@@ -1,5 +1,6 @@
 package pages;
 
+import cucumber.api.java.cs.A;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -102,11 +103,7 @@ public class CustomerDepositPage {
                 check = true;
             }
         }
-        try {
-            Assert.assertEquals(check, true);
-        } catch (Exception e) {
-            e.getStackTrace();
-        }
+        Assert.assertEquals(check, true);
     }
 
     public void verifyDepositUnsuccessfully() {

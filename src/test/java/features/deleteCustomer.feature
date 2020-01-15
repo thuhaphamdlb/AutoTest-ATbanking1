@@ -1,7 +1,7 @@
 Feature: Delete customer out of the system
 
     Background:
-        Given Open website https://www.way2automation.com/angularjs-protractor/banking/#/login
+        Given Open website https://www.way2automation.com/angularjs-protractor/banking/#/manager/addCust
         And I add customer successfully with firstName, lastName and postCode as An An 55000
         And I verify add recent account successfully
 

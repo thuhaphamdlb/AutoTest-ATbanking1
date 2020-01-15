@@ -8,13 +8,10 @@ public class DeleteCustomerTest extends PageProvider {
     @And("I add customer successfully with firstName, lastName and postCode as (.*) (.*) (.*)$")
     public void addCustomerCommon(String firstName, String lastName, String postCode) throws InterruptedException {
         Thread.sleep(2000);
-        getDeleteCustomerPage().redirectToAddCustomerPageDelete();
-        Thread.sleep(2000);
         getDeleteCustomerPage().setUserInformationDelete(firstName, lastName, postCode);
         Thread.sleep(2000);
         getDeleteCustomerPage().clickSubmitDelete();
     }
-
 
     @And("^I verify add recent account successfully$")
     public void addCustomerSuccessfully() throws InterruptedException {
