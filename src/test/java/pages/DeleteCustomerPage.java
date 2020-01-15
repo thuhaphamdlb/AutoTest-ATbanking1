@@ -9,6 +9,8 @@ import runner.TestRunner;
 
 import java.util.List;
 
+import static org.testng.AssertJUnit.assertEquals;
+
 public class DeleteCustomerPage {
     @FindBy(xpath = "//div[1]/div[2]/button")
     WebElement bankManagerLoginButton;
@@ -95,21 +97,17 @@ public class DeleteCustomerPage {
 
     public void verifyDeleteCustomerSuccessfully(String firstName, String lastName, String postCode, Boolean success) {
         List<WebElement> rows = customerTable.findElements(By.tagName("tr"));
-        Boolean check = false;
+        boolean check = false;
 
         for (int i = 1; i < rows.size(); i++) {
             List<WebElement> cols = rows.get(i).findElements(By.tagName("td"));
             if (!cols.get(0).getText().equals(firstName) && !cols.get(1).getText().equals(lastName)
                     && !cols.get(2).getText().equals(postCode)) {
-                System.out.println("Phát hiện ra bọn đó không bằng nhau rồi nhé. Xóa đúng đứa rồi đó. Yên tâm");
                 check = true;
                 break;
             }
         }
-        if (success) {
-            if (!check) Assert.assertEquals(1, 0);
-        } else {
-            if (check) Assert.assertEquals(1, 0);
-        }
+
+        Assert.assertEquals(check, true);
     }
 }

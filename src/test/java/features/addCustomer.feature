@@ -1,10 +1,9 @@
 Feature: Add customer to the system
 
     Background:
-        Given Open website https://www.way2automation.com/angularjs-protractor/banking/#/login
+        Given Open website https://www.way2automation.com/angularjs-protractor/banking/#/manager/addCust
 
     Scenario Outline: Add customer successfully
-        And I redirect to add customer page
         When I type firstName as <firstName> and lastName as <lastName> and postCode as <postCode>
         And I click submit
         Then I verify that system is already added customer as <fullName> successfully
@@ -14,7 +13,6 @@ Feature: Add customer to the system
             | Ha        | Thu      | 55000    | Ha Thu   |
 
     Scenario Outline: Add customer unsuccessfully
-        And I redirect to add customer page
         When I type firstName as <firstName> and lastName as <lastName> and postCode as <postCode>
         And I click submit
         Then I verify that system is already added customer as <fullName> unsuccessfully

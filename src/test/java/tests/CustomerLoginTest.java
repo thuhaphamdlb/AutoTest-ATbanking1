@@ -6,12 +6,6 @@ import cucumber.api.java.en.When;
 
 public class CustomerLoginTest extends PageProvider {
 
-    @And("^I click customer login button$")
-    public void clickCustomerLoginButton() throws InterruptedException {
-        Thread.sleep(2000);
-        getCustomerLoginPage().clickCustomerLoginButton();
-    }
-
     @When("^I click customer name as (.*)$")
     public void choseCustomerName(String customerNameSelected) throws InterruptedException {
         Thread.sleep(2000);

@@ -10,21 +10,14 @@ import org.testng.Assert;
 public class CustomerLoginPage {
     private WebDriver driver;
 
-    @FindBy(xpath = "//div[3]/div/div[2]/div/div[1]/div[1]/button")
-    WebElement customerLoginButton;
-
     @FindBy(id = "userSelect")
     WebElement userSelect;
 
-    @FindBy(xpath = "//div/form/button")
+    @FindBy(css = "button.btn:nth-child(2)")
     WebElement loginButton;
 
     @FindBy(css = ".fontBig")
     WebElement nameLogin;
-
-    public void clickCustomerLoginButton() {
-        customerLoginButton.click();
-    }
 
     public void choseCustomerName(String customerNameSelected) throws InterruptedException {
         Thread.sleep(2000);

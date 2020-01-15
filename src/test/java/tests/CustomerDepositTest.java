@@ -9,8 +9,6 @@ public class CustomerDepositTest extends PageProvider {
     @And("I login successfully with username as (.*)$")
     public void userLogin(String username) throws InterruptedException {
         Thread.sleep(3000);
-        getCustomerDepositPage().clickCustomerLoginButtonDeposit();
-        Thread.sleep(3000);
         getCustomerDepositPage().choseCustomerNameDeposit(username);
         Thread.sleep(3000);
         getCustomerDepositPage().clickLoginButtonDeposit();
@@ -51,7 +49,7 @@ public class CustomerDepositTest extends PageProvider {
     @Then("^I verify deposit transactions successfully with money of (.*)$")
     public void verifyDepositTransactionsSuccessfully(String moneyDeposit) throws InterruptedException {
         Thread.sleep(3000);
-        getCustomerDepositPage().verifyDepositTransactionsSuccessfully(moneyDeposit, true);
+        getCustomerDepositPage().verifyDepositTransactionsSuccessfully(moneyDeposit);
     }
 
     @Then("^I verify deposit unsuccessfully$")

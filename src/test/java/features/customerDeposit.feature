@@ -1,7 +1,7 @@
 Feature: Customer deposit
 
     Background:
-        Given Open website https://www.way2automation.com/angularjs-protractor/banking/#/login
+        Given Open website https://www.way2automation.com/angularjs-protractor/banking/#/customer
         And I login successfully with username as Harry Potter
 
     Scenario Outline: Customer deposit successfully

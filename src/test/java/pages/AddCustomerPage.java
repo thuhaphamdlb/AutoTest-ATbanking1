@@ -10,11 +10,6 @@ import runner.TestRunner;
 import java.util.List;
 
 public class AddCustomerPage {
-    @FindBy(css = "div.center:nth-child(3) > button:nth-child(1)")
-    WebElement bankManagerLoginButton;
-
-    @FindBy(css = "button.btn-lg:nth-child(1)")
-    WebElement addCustomerButton;
 
     @FindBy(xpath = "//div[1]/input")
     WebElement firstName;
@@ -36,13 +31,6 @@ public class AddCustomerPage {
 
     @FindBy(xpath = "//div[2]/div/div[1]/button[2]")
     WebElement openAccountTab;
-
-    public void redirectToAddCustomerPage() throws InterruptedException {
-        Thread.sleep(3000);
-        bankManagerLoginButton.click();
-        Thread.sleep(3000);
-        addCustomerButton.click();
-    }
 
     public void setUserInformation(String firstNameInput, String lastNameInput, String postCodeInput) throws InterruptedException {
         this.firstName.clear();
@@ -85,16 +73,16 @@ public class AddCustomerPage {
     public void checkUserInformation(String fullNameInput, Boolean success) {
         accountUser.click();
         List<WebElement> userList = userSelect.findElements(By.tagName("option"));
-        Boolean check = false;
+        boolean check = false;
         for (WebElement user : userList) {
             if (user.getText().equals(fullNameInput)) {
                 check = true;
             }
         }
         if (success) {
-            if (!check) Assert.assertEquals(1, 0);
+            Assert.assertEquals(check, true);
         } else {
-            if (check) Assert.assertEquals(1, 0);
+            Assert.assertEquals(check, false);
         }
     }
 }

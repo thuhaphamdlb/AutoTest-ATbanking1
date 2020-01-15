@@ -5,12 +5,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class AddCustomerTest extends PageProvider {
-    @And("^I redirect to add customer page$")
-    public void redirectToAddCustomerPage() throws InterruptedException {
-        Thread.sleep(2000);
-        getAddCustomerPage().redirectToAddCustomerPage();
-    }
-
     @When("^I type firstName as (.+) and lastName as (.+) and postCode as (.+)$")
     public void inputUserInformation(String firstName, String lastName, String postCode) throws InterruptedException {
         Thread.sleep(2000);
@@ -26,7 +20,7 @@ public class AddCustomerTest extends PageProvider {
     @Then("^I verify that system is already added customer as (.+) successfully$")
     public void verifyCustomerAddSuccessfully(String fullName) throws InterruptedException {
         Thread.sleep(2000);
-        getCommonPage().closeAlertPopup();
+        getAddCustomerPage().verifyAddCustomerSuccessfully();
         Thread.sleep(2000);
         getAddCustomerPage().clickOpenAccountTab();
         Thread.sleep(2000);

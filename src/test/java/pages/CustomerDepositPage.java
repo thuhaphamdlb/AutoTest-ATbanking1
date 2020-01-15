@@ -11,11 +11,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import static org.testng.AssertJUnit.assertEquals;
+import static tests.PageProvider.getCommonPage;
+
 public class CustomerDepositPage {
     private WebDriver driver;
-
-    @FindBy(xpath = "//div[3]/div/div[2]/div/div[1]/div[1]/button")
-    WebElement customerLoginButton;
 
     @FindBy(id = "userSelect")
     WebElement userSelect;
@@ -51,10 +51,6 @@ public class CustomerDepositPage {
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("MMM dd, yyyy h:mm:ss a");
         String formattedDate = myDateObj.format(myFormatObj);
         return formattedDate;
-    }
-
-    public void clickCustomerLoginButtonDeposit() {
-        customerLoginButton.click();
     }
 
     public void choseCustomerNameDeposit(String customerNameSelected) throws InterruptedException {
@@ -95,21 +91,21 @@ public class CustomerDepositPage {
         transactionButton.click();
     }
 
-    public void verifyDepositTransactionsSuccessfully(String moneyDeposited, Boolean success) {
-        Boolean check = false;
+    public void verifyDepositTransactionsSuccessfully(String moneyDeposited) throws InterruptedException {
+        Thread.sleep(2000);
+        boolean check = false;
         List<WebElement> rows = transactionTable.findElements(By.tagName("tr"));
         for (int i = 1; i < rows.size(); i++) {
             List<WebElement> cols = rows.get(i).findElements(By.tagName("td"));
-            System.out.println(cols.get(0).getText());
             if (cols.get(0).getText().equals(dateTimeDeposit) && cols.get(1).getText().equals(moneyDeposited)
                     && cols.get(2).getText().equals("Credit")) {
                 check = true;
             }
         }
-        if (success) {
-            if (!check == false) Assert.assertEquals(1, 0);
-        } else {
-            if (check == false) Assert.assertEquals(1, 0);
+        try {
+            Assert.assertEquals(check, true);
+        } catch (Exception e) {
+            e.getStackTrace();
         }
     }
 
