@@ -58,7 +58,7 @@ public class CustomerDepositPage {
     }
 
     public void choseCustomerNameDeposit(String customerNameSelected) throws InterruptedException {
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         Select userSelects = new Select(userSelect);
         userSelects.selectByVisibleText(customerNameSelected);
     }
@@ -83,7 +83,6 @@ public class CustomerDepositPage {
     public void submitDeposit() {
         depositSubmitButton.click();
         dateTimeDeposit = getDateTimeDeposit();
-        System.out.println(dateTimeDeposit);
     }
 
     public void verifyDepositSuccessfully() {
@@ -107,9 +106,9 @@ public class CustomerDepositPage {
             }
         }
         if (success) {
-            if (!check) Assert.assertEquals(1, 0);
+            if (!check == false) Assert.assertEquals(1, 0);
         } else {
-            if (check) Assert.assertEquals(1, 0);
+            if (check == false) Assert.assertEquals(1, 0);
         }
     }
 
