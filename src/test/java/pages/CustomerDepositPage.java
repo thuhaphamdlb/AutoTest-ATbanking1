@@ -67,7 +67,8 @@ public class CustomerDepositPage {
         loginButton.click();
     }
 
-    public void verifyLoginDepositSuccessfully(String customerNameSelected) {
+    public void verifyLoginDepositSuccessfully(String customerNameSelected) throws InterruptedException {
+        Thread.sleep(2000);
         String customerName = nameLogin.getText();
         Assert.assertEquals(customerName, customerNameSelected);
     }
