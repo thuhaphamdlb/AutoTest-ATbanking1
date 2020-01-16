@@ -11,7 +11,6 @@ public class ResetTransactionsTest extends PageProvider{
     public void userLogin(String username) throws InterruptedException {
         Thread.sleep(3000);
         getResetTransactionsPage().choseCustomerNameReset(username);
-        Thread.sleep(3000);
         getResetTransactionsPage().clickLoginButtonReset();
         Thread.sleep(3000);
         getResetTransactionsPage().verifyLoginResetSuccessfully(username);
@@ -19,7 +18,6 @@ public class ResetTransactionsTest extends PageProvider{
 
     @And("I sent the deposit withdrawn reset amount of (.*)$")
     public void sendDeposit(String numberDeposit) throws InterruptedException {
-        Thread.sleep(3000);
         getResetTransactionsPage().clickDepositButtonTopReset();
         Thread.sleep(3000);
         getResetTransactionsPage().sendDepositNumberReset(numberDeposit);
@@ -31,7 +29,6 @@ public class ResetTransactionsTest extends PageProvider{
 
     @When("^I click the withdrawn button reset$")
     public void clickWithdrawnButton() throws InterruptedException {
-        Thread.sleep(3000);
         getResetTransactionsPage().clickWithdrawnButtonReset();
     }
 
@@ -43,7 +40,6 @@ public class ResetTransactionsTest extends PageProvider{
 
     @Then("^I click button to withdrawn reset$")
     public void clickSubmitToWithdrawn() throws InterruptedException {
-        Thread.sleep(3000);
         getResetTransactionsPage().clickWithdrawnSubmitReset();
     }
 
@@ -57,7 +53,6 @@ public class ResetTransactionsTest extends PageProvider{
 
     @Then("^I click reset button$")
     public void clickResetButton() throws InterruptedException {
-        Thread.sleep(2000);
         getResetTransactionsPage().clickResetButton();
     }
     @Then("^I verify reset transaction successfully$")

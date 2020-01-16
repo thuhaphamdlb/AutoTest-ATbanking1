@@ -9,7 +9,6 @@ public class DeleteCustomerTest extends PageProvider {
     public void addCustomerCommon(String firstName, String lastName, String postCode) throws InterruptedException {
         Thread.sleep(2000);
         getDeleteCustomerPage().setUserInformationDelete(firstName, lastName, postCode);
-        Thread.sleep(2000);
         getDeleteCustomerPage().clickSubmitDelete();
     }
 
@@ -21,7 +20,6 @@ public class DeleteCustomerTest extends PageProvider {
 
     @When("^I click Customers tab$")
     public void clickCustomerTab() throws InterruptedException {
-        Thread.sleep(2000);
         getDeleteCustomerPage().clickCustomersTabButton();
     }
 

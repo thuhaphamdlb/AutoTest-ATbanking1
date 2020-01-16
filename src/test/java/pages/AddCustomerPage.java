@@ -8,6 +8,7 @@ import org.testng.Assert;
 import runner.TestRunner;
 
 import java.util.List;
+import static tests.PageProvider.getCommonPage;
 
 public class AddCustomerPage {
 
@@ -50,8 +51,8 @@ public class AddCustomerPage {
         }
     }
 
-    public void clickSubmit() {
-        addCustomerBtn.click();
+    public void clickSubmit() throws InterruptedException {
+        getCommonPage().clickXpath(addCustomerBtn);
     }
 
     public void verifyAddCustomerSuccessfully() throws InterruptedException {
@@ -77,12 +78,12 @@ public class AddCustomerPage {
         Assert.assertEquals(unSuccessText, "Please check the details. Customer may be duplicate.");
     }
 
-    public void clickOpenAccountTab() {
-        openAccountTab.click();
+    public void clickOpenAccountTab() throws InterruptedException {
+        getCommonPage().clickXpath(openAccountTab);
     }
 
-    public void checkUserInformation(String fullNameInput, Boolean success) {
-        accountUser.click();
+    public void checkUserInformation(String fullNameInput, Boolean success) throws InterruptedException {
+        getCommonPage().clickXpath(accountUser);
         List<WebElement> userList = userSelect.findElements(By.tagName("option"));
         boolean check = false;
         for (WebElement user : userList) {

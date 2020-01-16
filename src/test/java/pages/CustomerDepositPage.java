@@ -11,14 +11,12 @@ import org.testng.Assert;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
+import static tests.PageProvider.getCommonPage;
 
 public class CustomerDepositPage {
     private WebDriver driver;
@@ -71,8 +69,8 @@ public class CustomerDepositPage {
         userSelects.selectByVisibleText(customerNameSelected);
     }
 
-    public void clickLoginButtonDeposit() {
-        loginButton.click();
+    public void clickLoginButtonDeposit() throws InterruptedException {
+        getCommonPage().clickXpath(loginButton);
     }
 
     public void verifyLoginDepositSuccessfully(String customerNameSelected) throws InterruptedException {
@@ -81,16 +79,16 @@ public class CustomerDepositPage {
         Assert.assertEquals(customerName, customerNameSelected);
     }
 
-    public void clickDepositButtonTop() {
-        depositButtonTop.click();
+    public void clickDepositButtonTop() throws InterruptedException {
+        getCommonPage().clickXpath(depositButtonTop);
     }
 
     public void sendDepositNumber(String depositNumber) {
         depositInput.sendKeys(depositNumber);
     }
 
-    public void submitDeposit() {
-        depositSubmitButton.click();
+    public void submitDeposit() throws InterruptedException {
+        getCommonPage().clickXpath(depositSubmitButton);
         dateTimeDeposit = getDateTimeDeposit();
     }
 
@@ -99,8 +97,8 @@ public class CustomerDepositPage {
         Assert.assertEquals(successText, "Deposit Successful");
     }
 
-    public void redirectToTransactionsPage() {
-        transactionButton.click();
+    public void redirectToTransactionsPage() throws InterruptedException {
+        getCommonPage().clickXpath(transactionButton);
     }
 
     public void verifyDepositTransactionsSuccessfully(String moneyDeposited) throws InterruptedException, ParseException {

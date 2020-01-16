@@ -13,7 +13,6 @@ public class AddCustomerTest extends PageProvider {
 
     @And("^I click submit$")
     public void clickSubmit() throws InterruptedException {
-        Thread.sleep(2000);
         getAddCustomerPage().clickSubmit();
     }
 
@@ -21,7 +20,6 @@ public class AddCustomerTest extends PageProvider {
     public void verifyCustomerAddSuccessfully(String fullName) throws InterruptedException {
         Thread.sleep(2000);
         getAddCustomerPage().verifyAddCustomerSuccessfully();
-        Thread.sleep(2000);
         getAddCustomerPage().clickOpenAccountTab();
         Thread.sleep(2000);
         getAddCustomerPage().checkUserInformation(fullName, true);
@@ -29,7 +27,6 @@ public class AddCustomerTest extends PageProvider {
 
     @Then("^I verify that system is already added customer as (.+) unsuccessfully$")
     public void verifyCustomerAddUnSuccessfully(String fullName) throws InterruptedException {
-        Thread.sleep(2000);
         getAddCustomerPage().clickOpenAccountTab();
         Thread.sleep(2000);
         getAddCustomerPage().checkUserInformation(fullName, false);
@@ -39,7 +36,6 @@ public class AddCustomerTest extends PageProvider {
     public void verifyAddCustomerUnSuccessfullyWithoutNameOrCurrency(String fullName) throws InterruptedException {
         Thread.sleep(2000);
         getAddCustomerPage().verifyAddCustomerUnSuccessfully();
-        Thread.sleep(1000);
         getAddCustomerPage().clickOpenAccountTab();
         Thread.sleep(2000);
         getAddCustomerPage().checkUserInformation(fullName, false);
@@ -49,7 +45,6 @@ public class AddCustomerTest extends PageProvider {
     public void verifyAddDuplicateCustomerUnsuccessfully(String fullName) throws InterruptedException {
         Thread.sleep(2000);
         getAddCustomerPage().verifyAddCustomerUnSuccessfully();
-        Thread.sleep(1000);
         getAddCustomerPage().clickOpenAccountTab();
         Thread.sleep(2000);
         getAddCustomerPage().checkUserInformation(fullName, true);

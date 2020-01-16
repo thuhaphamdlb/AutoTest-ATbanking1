@@ -21,7 +21,6 @@ public class OpenAccountTest extends PageProvider {
 
     @And("^I click open account$")
     public void i_click_open_account() throws InterruptedException {
-        Thread.sleep(2000);
         getOpenAccountPage().clickProcess();
     }
 

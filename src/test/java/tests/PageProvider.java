@@ -6,7 +6,6 @@ import runner.TestRunner;
 
 public class PageProvider {
 
-    private static OpenWebsitePage openWebsitePage;
     private static CustomerLoginPage customerLoginPage;
     private static CustomerDepositPage customerDepositPage;
     private static AddCustomerPage addCustomerPage;
@@ -30,13 +29,6 @@ public class PageProvider {
             commonPage = PageFactory.initElements(TestRunner.driver, CommonPage.class);
         }
         return commonPage;
-    }
-
-    public static OpenWebsitePage getOpenWebsitePage() {
-        if (openWebsitePage == null) {
-            openWebsitePage = PageFactory.initElements(TestRunner.driver, OpenWebsitePage.class);
-        }
-        return openWebsitePage;
     }
 
     public static AddCustomerPage getAddCustomerPage() {
@@ -80,6 +72,7 @@ public class PageProvider {
         }
         return searchCustomerPage;
     }
+
     public static ResetTransactionsPage getResetTransactionsPage() {
         if (resetTransactionsPage == null) {
             resetTransactionsPage = PageFactory.initElements(TestRunner.driver, ResetTransactionsPage.class);

@@ -14,7 +14,6 @@ public class CustomerLoginTest extends PageProvider {
 
     @And("^I click login button$")
     public void clickLoginButton() throws InterruptedException {
-        Thread.sleep(2000);
         getCustomerLoginPage().clickLoginButton();
     }
 

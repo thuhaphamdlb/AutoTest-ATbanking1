@@ -3,7 +3,6 @@ package tests;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import cucumber.api.java.en_scouse.An;
 
 import java.text.ParseException;
 
@@ -13,7 +12,6 @@ public class CustomerWithdrawnTest extends PageProvider {
     public void userLogin(String username) throws InterruptedException {
         Thread.sleep(3000);
         getCustomerWithDrawnPage().choseCustomerNameWithDrawn(username);
-        Thread.sleep(3000);
         getCustomerWithDrawnPage().clickLoginButtonWithDrawn();
         Thread.sleep(3000);
         getCustomerWithDrawnPage().verifyLoginWithDrawnSuccessfully(username);
@@ -21,11 +19,9 @@ public class CustomerWithdrawnTest extends PageProvider {
 
     @And("I sent the deposit withdrawn amount of (.*)$")
     public void sendDeposit(String numberDeposit) throws InterruptedException {
-        Thread.sleep(3000);
         getCustomerWithDrawnPage().clickDepositButtonTopWithdrawn();
         Thread.sleep(3000);
         getCustomerWithDrawnPage().sendDepositNumberWithdrawn(numberDeposit);
-        Thread.sleep(3000);
         getCustomerWithDrawnPage().submitDepositWithdrawn();
         Thread.sleep(3000);
         getCustomerWithDrawnPage().verifyDepositSuccessfullyWithdrawn();
@@ -33,7 +29,6 @@ public class CustomerWithdrawnTest extends PageProvider {
 
     @When("^I click the withdrawn button$")
     public void clickWithdrawnButton() throws InterruptedException {
-        Thread.sleep(3000);
         getCustomerWithDrawnPage().clickWithdrawnButton();
     }
 
@@ -45,7 +40,6 @@ public class CustomerWithdrawnTest extends PageProvider {
 
     @Then("^I click button to withdrawn$")
     public void clickSubmitToWithdrawn() throws InterruptedException {
-        Thread.sleep(3000);
         getCustomerWithDrawnPage().clickWithdrawnSubmit();
     }
 
@@ -53,7 +47,7 @@ public class CustomerWithdrawnTest extends PageProvider {
     public void verifyWithdrawnSuccessfully(String moneyWithdrawn) throws InterruptedException, ParseException {
         Thread.sleep(3000);
         getCustomerWithDrawnPage().verifyWithdrawnSuccessfully(moneyWithdrawn);
-        Thread.sleep(4000);
+        Thread.sleep(3000);
         getCustomerWithDrawnPage().verifyWithdrawnTransactionsSuccessfully(moneyWithdrawn);
     }
 }

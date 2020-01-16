@@ -9,7 +9,7 @@ import runner.TestRunner;
 
 import java.util.List;
 
-import static org.testng.AssertJUnit.assertEquals;
+import static tests.PageProvider.getCommonPage;
 
 public class DeleteCustomerPage {
 
@@ -49,8 +49,8 @@ public class DeleteCustomerPage {
         }
     }
 
-    public void clickSubmitDelete() {
-        addCustomerBtn.click();
+    public void clickSubmitDelete() throws InterruptedException {
+        getCommonPage().clickXpath(addCustomerBtn);
     }
 
     public void verifyAddCustomerSuccessfullyDelete() throws InterruptedException {
@@ -65,8 +65,8 @@ public class DeleteCustomerPage {
         Assert.assertEquals(successText, "Customer added successfully with customer");
     }
 
-    public void clickCustomersTabButton() {
-        customerTabButton.click();
+    public void clickCustomersTabButton() throws InterruptedException {
+        getCommonPage().clickXpath(customerTabButton);
     }
 
     public void deleteCustomer(String firstName, String lastName, String postCode) {

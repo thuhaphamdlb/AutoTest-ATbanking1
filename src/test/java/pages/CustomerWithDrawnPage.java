@@ -14,6 +14,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
+import static tests.PageProvider.getCommonPage;
+
 public class CustomerWithDrawnPage {
 
     @FindBy(id = "userSelect")
@@ -76,8 +78,8 @@ public class CustomerWithDrawnPage {
         userSelects.selectByVisibleText(customerNameSelected);
     }
 
-    public void clickLoginButtonWithDrawn() {
-        loginButton.click();
+    public void clickLoginButtonWithDrawn() throws InterruptedException {
+        getCommonPage().clickXpath(loginButton);
     }
 
     public void verifyLoginWithDrawnSuccessfully(String customerNameSelected) {
@@ -85,16 +87,16 @@ public class CustomerWithDrawnPage {
         Assert.assertEquals(customerName, customerNameSelected);
     }
 
-    public void clickDepositButtonTopWithdrawn() {
-        depositButtonTop.click();
+    public void clickDepositButtonTopWithdrawn() throws InterruptedException {
+        getCommonPage().clickXpath(depositButtonTop);
     }
 
     public void sendDepositNumberWithdrawn(String depositNumber) {
         depositInput.sendKeys(depositNumber);
     }
 
-    public void submitDepositWithdrawn() {
-        depositSubmitButton.click();
+    public void submitDepositWithdrawn() throws InterruptedException {
+        getCommonPage().clickXpath(depositSubmitButton);
         depositTime = getDateTime();
     }
 
@@ -103,17 +105,17 @@ public class CustomerWithDrawnPage {
         Assert.assertEquals(successText, "Deposit Successful");
     }
 
-    public void clickWithdrawnButton() {
+    public void clickWithdrawnButton() throws InterruptedException {
         moneyBeforeWithdrawn = Integer.parseInt(moneyAmount.getText());
-        withdrawnButton.click();
+        getCommonPage().clickXpath(withdrawnButton);
     }
 
     public void withdrawnMoney(String numberWithdrawn) {
         getWithdrawnText.sendKeys(numberWithdrawn);
     }
 
-    public void clickWithdrawnSubmit() {
-        withdrawnSubmit.click();
+    public void clickWithdrawnSubmit() throws InterruptedException {
+        getCommonPage().clickXpath(withdrawnSubmit);
         withdrawnTime = getDateTime();
         moneyAfterWithdrawn = Integer.parseInt(moneyAmount.getText());
     }
@@ -125,7 +127,7 @@ public class CustomerWithDrawnPage {
 
     public void verifyWithdrawnTransactionsSuccessfully(String moneyWithdrawnActual) throws ParseException, InterruptedException {
         boolean check = false;
-        transactionButton.click();
+        getCommonPage().clickXpath(transactionButton);
         Thread.sleep(1000);
         List<WebElement> rows = transactionTable.findElements(By.tagName("tr"));
         for (int i = 1; i < rows.size(); i++) {

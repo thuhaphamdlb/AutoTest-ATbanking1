@@ -1,14 +1,13 @@
 package pages;
 
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import runner.TestRunner;
 
-import java.util.List;
+import static tests.PageProvider.getCommonPage;
 
 public class OpenAccountPage {
     @FindBy(xpath = "//div[1]/div[2]/button")
@@ -27,9 +26,8 @@ public class OpenAccountPage {
     WebElement processBtn;
 
     public void redirectToOpenAccountPage() throws InterruptedException {
-        bankManagerLoginButton.click();
-        Thread.sleep(1000);
-        openAccountButton.click();
+        getCommonPage().clickXpath(bankManagerLoginButton);
+        getCommonPage().clickXpath(openAccountButton);
     }
 
     public void getUserInformation(String usernameInput) {
@@ -42,8 +40,8 @@ public class OpenAccountPage {
         userSelects.selectByVisibleText(currencyInput);
     }
 
-    public void clickProcess() {
-        processBtn.click();
+    public void clickProcess() throws InterruptedException {
+        getCommonPage().clickXpath(processBtn);
     }
 
     public void verifyUserAlreadyOpen() {

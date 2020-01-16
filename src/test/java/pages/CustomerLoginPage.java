@@ -1,14 +1,12 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
+import static tests.PageProvider.getCommonPage;
 public class CustomerLoginPage {
-    private WebDriver driver;
 
     @FindBy(id = "userSelect")
     WebElement userSelect;
@@ -25,8 +23,8 @@ public class CustomerLoginPage {
         userSelects.selectByVisibleText(customerNameSelected);
     }
 
-    public void clickLoginButton() {
-        loginButton.click();
+    public void clickLoginButton() throws InterruptedException {
+        getCommonPage().clickXpath(loginButton);
     }
 
     public void verifyLoginSuccessfully(String customerNameSelected) throws InterruptedException {

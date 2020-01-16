@@ -12,7 +12,6 @@ public class CustomerDepositTest extends PageProvider {
     public void userLogin(String username) throws InterruptedException {
         Thread.sleep(3000);
         getCustomerDepositPage().choseCustomerNameDeposit(username);
-        Thread.sleep(3000);
         getCustomerDepositPage().clickLoginButtonDeposit();
         Thread.sleep(3000);
         getCustomerDepositPage().verifyLoginDepositSuccessfully(username);
@@ -20,7 +19,6 @@ public class CustomerDepositTest extends PageProvider {
 
     @When("^I click deposit button top to deposit$")
     public void clickDepositButtonTop() throws InterruptedException {
-        Thread.sleep(3000);
         getCustomerDepositPage().clickDepositButtonTop();
     }
 
