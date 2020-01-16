@@ -56,4 +56,8 @@ public class OpenAccountPage {
         }
         Assert.assertEquals(successText, "Account created successfully with account Number");
     }
+    public void verifyUserNotOpen(){
+        Assert.assertEquals("","");
+
+    }
 }

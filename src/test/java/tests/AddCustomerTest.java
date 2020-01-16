@@ -34,4 +34,14 @@ public class AddCustomerTest extends PageProvider {
         Thread.sleep(2000);
         getAddCustomerPage().checkUserInformation(fullName, false);
     }
+
+    @Then("^I verify that system added customer as (.*) unsuccessfully$")
+    public void verifyAddCustomerUnSuccessfullyWithoutNameOrCurrency(String fullName) throws InterruptedException {
+        Thread.sleep(2000);
+        getAddCustomerPage().verifyAddCustomerUnSuccessfully();
+        Thread.sleep(1000);
+        getAddCustomerPage().clickOpenAccountTab();
+        Thread.sleep(2000);
+        getAddCustomerPage().checkUserInformation(fullName, false);
+    }
 }

@@ -15,6 +15,7 @@ public class PageProvider {
     private static CustomerWithDrawnPage customerWithDrawnPage;
     private static DeleteCustomerPage deleteCustomerPage;
     private static SearchCustomerPage searchCustomerPage;
+    private static ResetTransactionsPage resetTransactionsPage;
 
     public static OpenAccountPage getOpenAccountPage() {
         if (openAccountPage == null) {
@@ -79,5 +80,10 @@ public class PageProvider {
         }
         return searchCustomerPage;
     }
-
+    public static ResetTransactionsPage getResetTransactionsPage() {
+        if (resetTransactionsPage == null) {
+            resetTransactionsPage = PageFactory.initElements(TestRunner.driver, ResetTransactionsPage.class);
+        }
+        return resetTransactionsPage;
+    }
 }

@@ -65,6 +65,17 @@ public class AddCustomerPage {
         }
         Assert.assertEquals(successText, "Customer added successfully with customer");
     }
+    public void verifyAddCustomerUnSuccessfully() throws InterruptedException {
+        String unSuccessText = "";
+        Alert alert = TestRunner.driver.switchTo().alert();
+        String alertMessage = alert.getText();
+        Thread.sleep(1000);
+        alert.accept();
+        for (int i = 0; i < alertMessage.length(); i++) {
+            unSuccessText += alertMessage.charAt(i);
+        }
+        Assert.assertEquals(unSuccessText, "Please check the details. Customer may be duplicate.");
+    }
 
     public void clickOpenAccountTab() {
         openAccountTab.click();
@@ -84,5 +95,9 @@ public class AddCustomerPage {
         } else {
             Assert.assertEquals(check, false);
         }
+    }
+
+    public void addCustomerUnsuccessfully(){
+        Assert.assertEquals("","Please check the details. Customer may be duplicate.");
     }
 }
