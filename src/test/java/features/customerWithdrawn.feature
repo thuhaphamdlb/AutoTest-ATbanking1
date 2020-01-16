@@ -1,7 +1,7 @@
 Feature: Withdrawn
 
     Background:
-        Given Open website https://www.way2automation.com/angularjs-protractor/banking/#/login
+        Given Open website https://www.way2automation.com/angularjs-protractor/banking/#/customer
         And I login successfully to withdrawn with username as Harry Potter
         And I sent the deposit withdrawn amount of 10000
 
@@ -13,3 +13,4 @@ Feature: Withdrawn
         Examples:
             | numberWithdrawn | moneyOut |
             | 2000            | 2000     |
+            | 1000            | 1000     |

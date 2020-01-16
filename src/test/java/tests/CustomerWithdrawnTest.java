@@ -3,13 +3,14 @@ package tests;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import cucumber.api.java.en_scouse.An;
+
+import java.text.ParseException;
 
 public class CustomerWithdrawnTest extends PageProvider {
 
     @And("I login successfully to withdrawn with username as (.*)$")
     public void userLogin(String username) throws InterruptedException {
-        Thread.sleep(3000);
-        getCustomerWithDrawnPage().clickCustomerLoginButtonWithDrawn();
         Thread.sleep(3000);
         getCustomerWithDrawnPage().choseCustomerNameWithDrawn(username);
         Thread.sleep(3000);
@@ -49,8 +50,10 @@ public class CustomerWithdrawnTest extends PageProvider {
     }
 
     @And("^I verify withdrawn successfully with money of (.*)$")
-    public void verifyWithdrawnSuccessfully(String moneyWithdrawn) throws InterruptedException {
+    public void verifyWithdrawnSuccessfully(String moneyWithdrawn) throws InterruptedException, ParseException {
         Thread.sleep(3000);
         getCustomerWithDrawnPage().verifyWithdrawnSuccessfully(moneyWithdrawn);
+        Thread.sleep(4000);
+        getCustomerWithDrawnPage().verifyWithdrawnTransactionsSuccessfully(moneyWithdrawn);
     }
 }

@@ -1,16 +1,20 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.List;
 
 public class CustomerWithDrawnPage {
-    @FindBy(xpath = "//div[3]/div/div[2]/div/div[1]/div[1]/button")
-    WebElement customerLoginButton;
 
     @FindBy(id = "userSelect")
     WebElement userSelect;
@@ -45,10 +49,20 @@ public class CustomerWithDrawnPage {
     @FindBy(xpath = "//strong[2]")
     WebElement moneyAmount;
 
-    int moneyBeforeWithdrawn, moneyAfterWithdrawn;
+    @FindBy(xpath = "//div[3]/button[1]")
+    WebElement transactionButton;
 
-    public void clickCustomerLoginButtonWithDrawn() {
-        customerLoginButton.click();
+    @FindBy(xpath = "//div[2]/table")
+    WebElement transactionTable;
+
+    int moneyBeforeWithdrawn, moneyAfterWithdrawn;
+    String withdrawnTime;
+
+    public String formartDate(String dateTime) throws ParseException {
+        String userDateFormat = "MMM dd, yyyy h:mm";
+        DateFormat sdf = new SimpleDateFormat(userDateFormat);
+        Date date = sdf.parse(dateTime);
+        return sdf.format(date);
     }
 
     public String getDateTimeWithdrawn() {
@@ -58,8 +72,7 @@ public class CustomerWithDrawnPage {
         return formattedDate;
     }
 
-    public void choseCustomerNameWithDrawn(String customerNameSelected) throws InterruptedException {
-        Thread.sleep(2000);
+    public void choseCustomerNameWithDrawn(String customerNameSelected) {
         Select userSelects = new Select(userSelect);
         userSelects.selectByVisibleText(customerNameSelected);
     }
@@ -101,6 +114,7 @@ public class CustomerWithDrawnPage {
 
     public void clickWithdrawnSubmit() {
         withdrawnSubmit.click();
+        withdrawnTime = getDateTimeWithdrawn();
         moneyAfterWithdrawn = Integer.parseInt(moneyAmount.getText());
     }
 
@@ -108,9 +122,20 @@ public class CustomerWithDrawnPage {
         int moneyWithdrawn = moneyBeforeWithdrawn - moneyAfterWithdrawn;
         Assert.assertEquals(Integer.parseInt(moneyWithdrawnActual), moneyWithdrawn);
     }
-    public void verifyWithdrawnTransactionsSuccessfully(String moneyWithdrawnActual) {
-        String date = getDateTimeWithdrawn();
-        int moneyWithdrawn = moneyBeforeWithdrawn - moneyAfterWithdrawn;
-        Assert.assertEquals(Integer.parseInt(moneyWithdrawnActual), moneyWithdrawn);
+
+    public void verifyWithdrawnTransactionsSuccessfully(String moneyWithdrawnActual) throws ParseException, InterruptedException {
+        boolean check = false;
+        transactionButton.click();
+        Thread.sleep(1000);
+        List<WebElement> rows = transactionTable.findElements(By.tagName("tr"));
+        for (int i = 1; i < rows.size(); i++) {
+            List<WebElement> cols = rows.get(i).findElements(By.tagName("td"));
+            if (formartDate(cols.get(0).getText()).equals(withdrawnTime) && cols.get(1).getText().equals(moneyWithdrawnActual)
+                    && cols.get(2).getText().equals("Debit")) {
+                check = true;
+                break;
+            }
+        }
+        Assert.assertEquals(check, true);
     }
 }

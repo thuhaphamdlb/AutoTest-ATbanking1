@@ -15,7 +15,7 @@ import cucumber.api.testng.CucumberFeatureWrapper;
 import cucumber.api.testng.TestNGCucumberRunner;
 
 @CucumberOptions(
-        features = "src/test/java/features/customerDeposit.feature",
+        features = "src/test/java/features/",
         glue = {"tests"},
         tags = {"~@Ignore"},
         format = {
@@ -69,6 +69,6 @@ public class TestRunner {
     @AfterClass(alwaysRun = true)
     public void tearDownClass() throws Exception {
         testNGCucumberRunner.finish();
-        driver.quit();
+//        driver.quit();
     }
 }
