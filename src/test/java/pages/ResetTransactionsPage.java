@@ -152,7 +152,6 @@ public class ResetTransactionsPage {
 
     public void verifyResetTransactionSuccessfully(){
         List<WebElement> rows = transactionTable.findElements(By.tagName("tr"));
-        System.out.println(rows.size());
         Assert.assertEquals(rows.size()-1, 0);
     }
 }
