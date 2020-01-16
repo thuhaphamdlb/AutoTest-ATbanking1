@@ -23,7 +23,7 @@ Feature: Add customer to the system
     Scenario Outline: Add customer unsuccessfully with existent account
         When I type firstName as <firstName> and lastName as <lastName> and postCode as <postCode>
         And I click submit
-        Then I verify that system added customer as <fullName> unsuccessfully
+        Then I verify that system added duplicate customer as <fullName> unsuccessfully
         Examples:
             | firstName | lastName | postCode | fullName     |
             | Harry     | Potter   | E725JB   | Harry Potter |

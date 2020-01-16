@@ -18,11 +18,6 @@ public class OpenAccountTest extends PageProvider {
         Thread.sleep(2000);
         getOpenAccountPage().getCurrency(currency);
     }
-    @When("^I choose account as (.+)$")
-    public void openAccountWithFullName(String fullName) throws InterruptedException {
-        Thread.sleep(2000);
-        getOpenAccountPage().getUserInformation(fullName);
-    }
 
     @And("^I click open account$")
     public void i_click_open_account() throws InterruptedException {
@@ -36,9 +31,4 @@ public class OpenAccountTest extends PageProvider {
         getOpenAccountPage().verifyUserAlreadyOpen();
     }
 
-    @Then("^I verify that account is not opened without (.*) or (.*)$")
-    public void verifyUserNotOpen() throws InterruptedException {
-        Thread.sleep(2000);
-        getOpenAccountPage().verifyUserNotOpen();
-    }
 }
