@@ -16,6 +16,7 @@ Feature: Customer deposit
             | number | moneyDeposited |
             | 2000   | 2000           |
             | 10000  | 10000          |
+            | 1000   | 1000           |
             | 1200   | 1200           |
 
     Scenario Outline: Customer deposit unsuccessfully

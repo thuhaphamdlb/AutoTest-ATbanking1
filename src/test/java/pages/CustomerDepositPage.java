@@ -8,12 +8,17 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
-import static org.testng.AssertJUnit.assertEquals;
-import static tests.PageProvider.getCommonPage;
 
 public class CustomerDepositPage {
     private WebDriver driver;
@@ -47,11 +52,17 @@ public class CustomerDepositPage {
 
     String dateTimeDeposit;
 
+    public String formartDate(String dateTime) throws ParseException {
+        String userDateFormat = "MMM dd, yyyy h:mm";
+        DateFormat sdf = new SimpleDateFormat(userDateFormat);
+        Date date = sdf.parse(dateTime);
+        return sdf.format(date);
+    }
+
     public String getDateTimeDeposit() {
         LocalDateTime myDateObj = LocalDateTime.now();
-        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("MMM dd, yyyy h:mm:ss a");
-        String formattedDate = myDateObj.format(myFormatObj);
-        return formattedDate;
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("MMM dd, yyyy h:mm");
+        return myDateObj.format(myFormatObj);
     }
 
     public void choseCustomerNameDeposit(String customerNameSelected) throws InterruptedException {
@@ -92,15 +103,16 @@ public class CustomerDepositPage {
         transactionButton.click();
     }
 
-    public void verifyDepositTransactionsSuccessfully(String moneyDeposited) throws InterruptedException {
+    public void verifyDepositTransactionsSuccessfully(String moneyDeposited) throws InterruptedException, ParseException {
         Thread.sleep(2000);
         boolean check = false;
         List<WebElement> rows = transactionTable.findElements(By.tagName("tr"));
         for (int i = 1; i < rows.size(); i++) {
             List<WebElement> cols = rows.get(i).findElements(By.tagName("td"));
-            if (cols.get(0).getText().equals(dateTimeDeposit) && cols.get(1).getText().equals(moneyDeposited)
+            if (formartDate(cols.get(0).getText()).equals(dateTimeDeposit) && cols.get(1).getText().equals(moneyDeposited)
                     && cols.get(2).getText().equals("Credit")) {
                 check = true;
+                break;
             }
         }
         Assert.assertEquals(check, true);

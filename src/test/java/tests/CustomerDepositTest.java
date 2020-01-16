@@ -4,6 +4,8 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
+import java.text.ParseException;
+
 public class CustomerDepositTest extends PageProvider {
 
     @And("I login successfully with username as (.*)$")
@@ -47,7 +49,7 @@ public class CustomerDepositTest extends PageProvider {
     }
 
     @Then("^I verify deposit transactions successfully with money of (.*)$")
-    public void verifyDepositTransactionsSuccessfully(String moneyDeposit) throws InterruptedException {
+    public void verifyDepositTransactionsSuccessfully(String moneyDeposit) throws InterruptedException, ParseException {
         Thread.sleep(3000);
         getCustomerDepositPage().verifyDepositTransactionsSuccessfully(moneyDeposit);
     }
