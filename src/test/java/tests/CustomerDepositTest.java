@@ -52,10 +52,9 @@ public class CustomerDepositTest extends PageProvider {
         getCustomerDepositPage().verifyDepositTransactionsSuccessfully(moneyDeposit);
     }
 
-    @Then("^I verify deposit unsuccessfully$")
-    public void verifyDepositUnsuccessfully() throws InterruptedException {
+    @Then("^I verify deposit unsuccessfully with amount of(.*)$")
+    public void verifyDepositUnsuccessfully(String moneyDeposited) throws InterruptedException, ParseException {
         Thread.sleep(3000);
-        getCustomerDepositPage().verifyDepositUnsuccessfully();
+        getCustomerDepositPage().verifyDepositUnsuccessfully(moneyDeposited);
     }
-
 }

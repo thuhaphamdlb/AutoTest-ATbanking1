@@ -116,7 +116,18 @@ public class CustomerDepositPage {
         Assert.assertEquals(check, true);
     }
 
-    public void verifyDepositUnsuccessfully() {
-
+    public void verifyDepositUnsuccessfully(String moneyDeposited) throws InterruptedException, ParseException {
+        Thread.sleep(2000);
+        boolean check = false;
+        List<WebElement> rows = transactionTable.findElements(By.tagName("tr"));
+        for (int i = 1; i < rows.size(); i++) {
+            List<WebElement> cols = rows.get(i).findElements(By.tagName("td"));
+            if (formartDate(cols.get(0).getText()).equals(dateTimeDeposit) && cols.get(1).getText().equals(moneyDeposited)
+                    && cols.get(2).getText().equals("Credit")) {
+                check = true;
+                break;
+            }
+        }
+        Assert.assertEquals(check, false);
     }
 }

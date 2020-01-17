@@ -69,6 +69,6 @@ public class TestRunner {
     @AfterClass(alwaysRun = true)
     public void tearDownClass() throws Exception {
         testNGCucumberRunner.finish();
-//        driver.quit();
+        driver.quit();
     }
 }
